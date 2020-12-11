@@ -36,4 +36,15 @@ public class UsuarioControlador {
         return new ResponseEntity<Usuario>(usuarioServicio.crearUsuario(usuario), HttpStatus.CREATED);
     }
 
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable String username, @RequestBody Usuario usuario){
+        return new ResponseEntity<Usuario>(usuarioServicio.actualizarUsuario(usuario, username), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{username}")
+    public ResponseEntity<Void> eliminarUsuario(@PathVariable String username){
+        usuarioServicio.eliminarUsuario(username);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
